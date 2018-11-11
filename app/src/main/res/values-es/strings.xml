@@ -3,4 +3,6 @@
     <string name="app_name">Mi Aplicación</string>
     <string name="name2">Fernando Balladares</string>
     <string name="testText">Idioma: Español</string>
+    <string name="orientationText1">Vertical</string>
+    <string name="orientationText2">Horizontal</string>
 </resources>

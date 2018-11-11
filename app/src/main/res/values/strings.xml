@@ -2,4 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="name2">Fernando Balladares</string>
     <string name="testText">Language: English</string>
+    <string name="orientationText1">Portrait</string>
+    <string name="orientationText2">Landscape</string>
 </resources>
