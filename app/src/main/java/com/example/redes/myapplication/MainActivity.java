@@ -10,6 +10,8 @@ import android.view.*;
 //import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("usernameData", loginUsername.getText().toString());
                 i.putExtra("passwordData", loginPassword.getText().toString());
                 i.putExtra("codeData", loginCode.getText().toString());
+                //i.putExtra("codeData", Integer.toString(new Random().nextInt(10000)));
+
                 startActivity(i);
             }
         });
