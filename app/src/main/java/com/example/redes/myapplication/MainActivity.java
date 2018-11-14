@@ -7,6 +7,9 @@ import android.util.Log;
 import android.content.Intent;
 import android.widget.*;
 import android.view.*;
+import android.provider.ContactsContract;
+import android.database.Cursor;
+import android.net.Uri;
 //import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,7 +19,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private final static  String TAG = MainActivity.class.getSimpleName();
-
+    private Uri uriContact;
 
 
     @Override
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button loginBtn = (Button) findViewById(R.id.buttonLogin);
+        Button contactsBtn = (Button) findViewById(R.id.buttonContacts);
+
         //final TextView username = (TextView) findViewById(R.id.editTextUsername);
 
         final EditText loginUsername = (EditText) findViewById(R.id.editTextUsername);
@@ -47,6 +52,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        contactsBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                retrieveContactName();
+
+
+            }
+
+
+        });
+
+    }
+
+
+
+    private void retrieveContactName() {
+
+        String contactName = null;
+
+        // querying contact data store
+        Cursor cursor = getContentResolver().query(uriContact, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+
+            // DISPLAY_NAME = The display name for the contact.
+            // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
+
+            contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        }
+
+        cursor.close();
+
+        Log.d(TAG, "Contact Name: " + contactName);
 
     }
 

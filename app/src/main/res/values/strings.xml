@@ -8,4 +8,5 @@
     <string name="loginHintPassword">Password</string>
     <string name="loginHintCode">Code</string>
     <string name="loginButton1">Login</string>
+    <string name="contactButton">Show Contacts</string>
 </resources>

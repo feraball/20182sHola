@@ -9,4 +9,5 @@
     <string name="loginHintPassword">Contraseña</string>
     <string name="loginHintCode">Código</string>
     <string name="loginButton1">Ingresar</string>
+    <string name="contactButton">Mostrar Contactos</string>
 </resources>
