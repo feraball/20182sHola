@@ -70,14 +70,18 @@ public class MainActivity extends AppCompatActivity {
     private void retrieveContactName() {
 
 
-        //String[] projection = new String[] {"SELECT DISTINCT " + ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME};
-        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, "DISPLAY_NAME ASC");
+        String[] projection = new String[] {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+        //String selection = ContactsContract.Contacts.IN_VISIBLE_GROUP + " = '" + ("1") + "'";
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection, null, null, "display_name ASC");
+
+        Log.d(TAG, "------" + phones.getColumnCount());
 
         while (phones.moveToNext()){
 
             String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
+            //Log.d(TAG, "Contact #" + phones.getPosition() + " : " + name );
             Log.d(TAG, "Contact #" + phones.getPosition() + " : " + name + " (" + phoneNumber + ")");
             //Toast.makeText(getApplicationContext(),name, Toast.LENGTH_LONG).show();
         }
