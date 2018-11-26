@@ -69,22 +69,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void retrieveContactName() {
 
-        String contactName = null;
 
-        // querying contact data store
-        Cursor cursor = getContentResolver().query(uriContact, null, null, null, null);
+        //String[] projection = new String[] {"SELECT DISTINCT " + ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME};
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, "DISPLAY_NAME ASC");
 
-        if (cursor.moveToFirst()) {
+        while (phones.moveToNext()){
 
-            // DISPLAY_NAME = The display name for the contact.
-            // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
+            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            Log.d(TAG, "Contact #" + phones.getPosition() + " : " + name + " (" + phoneNumber + ")");
+            //Toast.makeText(getApplicationContext(),name, Toast.LENGTH_LONG).show();
         }
 
-        cursor.close();
+        phones.close();
 
-        Log.d(TAG, "Contact Name: " + contactName);
+
 
     }
 
